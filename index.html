@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Programs Library</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #101827;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 35px 15px;
+    background: #17243a;
+}
+
+header h1 {
+    color: #60a5fa;
+    font-size: 32px;
+}
+
+header p {
+    color: #cbd5e1;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.search {
+    width: 100%;
+    padding: 14px;
+    margin: 15px 0 25px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 20px;
+    margin-bottom: 22px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+}
+
+.card h2 {
+    color: #60a5fa;
+}
+
+pre {
+    background: #0b1120;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #a7f3d0;
+    white-space: pre;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>☕ Java Programs Library</h1>
+    <p>My personal collection of Java programs</p>
+</header>
+
+<div class="container">
+
+    <input
+        class="search"
+        type="text"
+        id="search"
+        placeholder="Search Java programs..."
+        oninput="searchPrograms()"
+    >
+
+    <div class="card">
+        <h2>1. Hello World</h2>
+        <pre id="code1">class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}</pre>
+        <button onclick="copyCode('code1')">Copy Code</button>
+    </div>
+
+    <div class="card">
+        <h2>2. Addition of Two Numbers</h2>
+        <pre id="code2">class Addition {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 20;
+        int sum = a + b;
+
+        System.out.println("Sum = " + sum);
+    }
+}</pre>
+        <button onclick="copyCode('code2')">Copy Code</button>
+    </div>
+
+    <div class="card">
+        <h2>3. Even or Odd</h2>
+        <pre id="code3">class EvenOdd {
+    public static void main(String[] args) {
+        int n = 7;
+
+        if (n % 2 == 0) {
+            System.out.println("Even");
+        } else {
+            System.out.println("Odd");
+        }
+    }
+}</pre>
+        <button onclick="copyCode('code3')">Copy Code</button>
+    </div>
+
+    <div class="card">
+        <h2>4. Factorial of a Number</h2>
+        <pre id="code4">class Factorial {
+    public static void main(String[] args) {
+        int n = 5;
+        int fact = 1;
+
+        for (int i = 1; i <= n; i++) {
+            fact = fact * i;
+        }
+
+        System.out.println("Factorial = " + fact);
+    }
+}</pre>
+        <button onclick="copyCode('code4')">Copy Code</button>
+    </div>
+
+</div>
+
+<footer>
+    Made with ❤️ | Java Programs Library
+</footer>
+
+<script>
+function copyCode(id) {
+    const code = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(code)
+        .then(() => alert("Code copied successfully!"))
+        .catch(() => alert("Please copy the code manually."));
+}
+
+function searchPrograms() {
+    const value = document.getElementById("search")
+        .value.toLowerCase();
+
+    document.querySelectorAll(".card").forEach(card => {
+        card.style.display = card.innerText
+            .toLowerCase().includes(value) ? "" : "none";
+    });
+}
+</script>
+
+</body>
+</html>
