@@ -57,6 +57,7 @@ header p {
 
 .card h2 {
     color: #60a5fa;
+    font-size: 20px;
 }
 
 pre {
@@ -65,7 +66,8 @@ pre {
     border-radius: 8px;
     overflow-x: auto;
     color: #a7f3d0;
-    white-space: pre;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 button {
@@ -98,27 +100,27 @@ footer {
 
 <div class="container">
 
-    <input
-        class="search"
-        type="text"
-        id="search"
-        placeholder="Search Java programs..."
-        oninput="searchPrograms()"
-    >
+<input class="search" type="text" id="search"
+placeholder="Search Java programs..."
+oninput="searchPrograms()">
 
-    <div class="card">
-        <h2>1. Hello World</h2>
-        <pre id="code1">class HelloWorld {
+<!-- PROGRAM 1 -->
+
+<div class="card">
+<h2>1. Hello World</h2>
+<pre id="code1">class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello World");
     }
 }</pre>
-        <button onclick="copyCode('code1')">Copy Code</button>
-    </div>
+<button onclick="copyCode('code1')">Copy Code</button>
+</div>
 
-    <div class="card">
-        <h2>2. Addition of Two Numbers</h2>
-        <pre id="code2">class Addition {
+<!-- PROGRAM 2 -->
+
+<div class="card">
+<h2>2. Addition of Two Numbers</h2>
+<pre id="code2">class Addition {
     public static void main(String[] args) {
         int a = 10;
         int b = 20;
@@ -127,12 +129,14 @@ footer {
         System.out.println("Sum = " + sum);
     }
 }</pre>
-        <button onclick="copyCode('code2')">Copy Code</button>
-    </div>
+<button onclick="copyCode('code2')">Copy Code</button>
+</div>
 
-    <div class="card">
-        <h2>3. Even or Odd</h2>
-        <pre id="code3">class EvenOdd {
+<!-- PROGRAM 3 -->
+
+<div class="card">
+<h2>3. Even or Odd</h2>
+<pre id="code3">class EvenOdd {
     public static void main(String[] args) {
         int n = 7;
 
@@ -143,12 +147,14 @@ footer {
         }
     }
 }</pre>
-        <button onclick="copyCode('code3')">Copy Code</button>
-    </div>
+<button onclick="copyCode('code3')">Copy Code</button>
+</div>
 
-    <div class="card">
-        <h2>4. Factorial of a Number</h2>
-        <pre id="code4">class Factorial {
+<!-- PROGRAM 4 -->
+
+<div class="card">
+<h2>4. Factorial of a Number</h2>
+<pre id="code4">class Factorial {
     public static void main(String[] args) {
         int n = 5;
         int fact = 1;
@@ -160,18 +166,154 @@ footer {
         System.out.println("Factorial = " + fact);
     }
 }</pre>
-        <button onclick="copyCode('code4')">Copy Code</button>
-    </div>
+<button onclick="copyCode('code4')">Copy Code</button>
+</div>
+
+<!-- PROGRAM 7 -->
+
+<div class="card">
+<h2>7. User-Defined Exception for Division by Zero</h2>
+<pre id="code7">class DivisionByZero extends Exception {
+    DivisionByZero(String message) {
+        super(message);
+    }
+}
+
+public class DivisionDemo {
+    static int divide(int a, int b) throws DivisionByZero {
+        if (b == 0)
+            throw new DivisionByZero("Division by zero is not allowed.");
+        return a / b;
+    }
+
+    public static void main(String[] args) {
+        int a = 20;
+        int b = 0;
+
+        try {
+            System.out.println("Result = " + divide(a, b));
+        } catch (DivisionByZero e) {
+            System.out.println("Custom Exception: " + e.getMessage());
+        } finally {
+            System.out.println("Finally block executed.");
+        }
+    }
+}</pre>
+<button onclick="copyCode('code7')">Copy Code</button>
+</div>
+
+<!-- PROGRAM 8 -->
+
+<div class="card">
+<h2>8. MyThread – Constructor, super and Concurrent Execution</h2>
+<pre id="code8">class MyThread extends Thread {
+    MyThread(String name) {
+        super(name);
+        System.out.println("Created thread: " + getName());
+        start();
+    }
+
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(getName() + " : " + i);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted.");
+            }
+        }
+    }
+}
+
+public class ThreadDemo {
+    public static void main(String[] args) {
+        MyThread t = new MyThread("Child Thread");
+
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Main Thread : " + i);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                System.out.println("Main thread interrupted.");
+            }
+        }
+    }
+}</pre>
+<button onclick="copyCode('code8')">Copy Code</button>
+</div>
+
+<!-- PROGRAM 9 -->
+
+<div class="card">
+<h2>9. Department Enumeration using valueOf()</h2>
+<pre id="code9">import java.util.Scanner;
+
+enum Department {
+    CSE, ISE, ECE, MECH
+}
+
+public class DepartmentDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter department (CSE/ISE/ECE/MECH): ");
+        String input = sc.nextLine().toUpperCase();
+
+        try {
+            Department dept = Department.valueOf(input);
+            System.out.println("Selected Department: " + dept);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid department name.");
+        }
+
+        sc.close();
+    }
+}</pre>
+<button onclick="copyCode('code9')">Copy Code</button>
+</div>
+
+<!-- PROGRAM 10 -->
+
+<div class="card">
+<h2>10. Marks of Three Subjects using Wrapper Classes</h2>
+<pre id="code10">import java.util.Scanner;
+
+public class MarksDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter marks of three subjects as strings:");
+        String s1 = sc.next();
+        String s2 = sc.next();
+        String s3 = sc.next();
+
+        Integer m1 = Integer.valueOf(s1);
+        Integer m2 = Integer.valueOf(s2);
+        Integer m3 = Integer.valueOf(s3);
+
+        int total = m1 + m2 + m3;
+        double average = total / 3.0;
+
+        System.out.println("Marks: " + m1 + ", " + m2 + ", " + m3);
+        System.out.println("Total = " + total);
+        System.out.println("Average = " + average);
+
+        sc.close();
+    }
+}</pre>
+<button onclick="copyCode('code10')">Copy Code</button>
+</div>
 
 </div>
 
 <footer>
-    Made with ❤️ | Java Programs Library
+Made with ❤️ | Java Programs Library
 </footer>
 
 <script>
 function copyCode(id) {
     const code = document.getElementById(id).innerText;
+
     navigator.clipboard.writeText(code)
         .then(() => alert("Code copied successfully!"))
         .catch(() => alert("Please copy the code manually."));
